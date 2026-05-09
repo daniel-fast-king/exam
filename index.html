@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EUEE Practice - Ethiopian University Entrance Exam</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🎓 EUEE Practice Platform</h1>
+                <p>Ethiopian University Entrance Examination Sample Questions</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Mode Selection -->
+            <section id="modeSelection" class="mode-selection">
+                <h2>Select Practice Mode</h2>
+                <div class="mode-grid">
+                    <button class="mode-btn" data-mode="fullExam">
+                        <span class="mode-icon">📋</span>
+                        <h3>Full Exam</h3>
+                        <p>Complete exam by year and subject</p>
+                    </button>
+                    <button class="mode-btn" data-mode="byGrade">
+                        <span class="mode-icon">📚</span>
+                        <h3>By Grade</h3>
+                        <p>Questions from specific grade</p>
+                    </button>
+                    <button class="mode-btn" data-mode="byChapter">
+                        <span class="mode-icon">📖</span>
+                        <h3>By Chapter</h3>
+                        <p>Focus on specific chapters</p>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Selection Panel -->
+            <section id="selectionPanel" class="selection-panel hidden">
+                <button class="back-btn" id="backBtn">← Back</button>
+                <h2 id="panelTitle"></h2>
+                
+                <div class="selection-form">
+                    <div class="form-group">
+                        <label for="yearSelect">Select Year:</label>
+                        <select id="yearSelect">
+                            <option value="">-- Select Year --</option>
+                            <option value="2005">2005</option>
+                            <option value="2006">2006</option>
+                            <option value="2007">2007</option>
+                            <option value="2008">2008</option>
+                            <option value="2009">2009</option>
+                            <option value="2010">2010</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subjectSelect">Select Subject:</label>
+                        <select id="subjectSelect">
+                            <option value="">-- Select Subject --</option>
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="Chemistry">Chemistry</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Biology">Biology</option>
+                            <option value="English">English</option>
+                            <option value="History">History</option>
+                            <option value="Geography">Geography</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="gradeGroup" style="display:none;">
+                        <label for="gradeSelect">Select Grade:</label>
+                        <select id="gradeSelect">
+                            <option value="">-- Select Grade --</option>
+                            <option value="11">Grade 11</option>
+                            <option value="12">Grade 12</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="chapterGroup" style="display:none;">
+                        <label for="chapterSelect">Select Chapter:</label>
+                        <select id="chapterSelect">
+                            <option value="">-- Select Chapter --</option>
+                            <option value="1">Chapter 1</option>
+                            <option value="2">Chapter 2</option>
+                            <option value="3">Chapter 3</option>
+                            <option value="4">Chapter 4</option>
+                            <option value="5">Chapter 5</option>
+                        </select>
+                    </div>
+
+                    <button id="startBtn" class="btn-primary">Start Practice</button>
+                </div>
+            </section>
+
+            <!-- Quiz Section -->
+            <section id="quizSection" class="quiz-section hidden">
+                <div class="quiz-header">
+                    <div class="quiz-info">
+                        <h2 id="quizTitle"></h2>
+                        <p id="quizSubtitle"></p>
+                    </div>
+                    <div class="quiz-progress">
+                        <div class="progress-bar">
+                            <div id="progressFill" class="progress-fill"></div>
+                        </div>
+                        <p id="progressText"></p>
+                    </div>
+                </div>
+
+                <div class="quiz-content">
+                    <div id="questionContainer" class="question-container">
+                        <div class="question-number" id="questionNumber"></div>
+                        <h3 id="questionText"></h3>
+                        <img id="questionImage" class="question-image" style="display:none;" />
+                        
+                        <div id="optionsContainer" class="options-container"></div>
+                    </div>
+                </div>
+
+                <div class="quiz-navigation">
+                    <button id="prevQuestionBtn" class="btn-secondary">← Previous</button>
+                    <div class="question-selector">
+                        <label for="questionJump">Go to question:</label>
+                        <input type="number" id="questionJump" min="1">
+                        <button id="jumpBtn" class="btn-secondary">Jump</button>
+                    </div>
+                    <button id="nextQuestionBtn" class="btn-secondary">Next →</button>
+                </div>
+
+                <button id="submitQuizBtn" class="btn-success">Submit Quiz</button>
+            </section>
+
+            <!-- Results Section -->
+            <section id="resultsSection" class="results-section hidden">
+                <h2>Quiz Results</h2>
+                
+                <div class="results-summary">
+                    <div class="score-card">
+                        <div class="score-value" id="scoreValue"></div>
+                        <p>Overall Score</p>
+                    </div>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-number" id="correctCount"></div>
+                            <p>Correct Answers</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="incorrectCount"></div>
+                            <p>Incorrect Answers</p>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="unansweredCount"></div>
+                            <p>Unanswered</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="reviewContainer" class="review-container"></div>
+
+                <div class="results-actions">
+                    <button id="downloadResultsBtn" class="btn-secondary">📥 Download Results</button>
+                    <button id="retryBtn" class="btn-primary">↻ Try Again</button>
+                    <button id="homeBtn" class="btn-secondary">🏠 Back to Home</button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 EUEE Practice Platform | Ethiopian University Entrance Examination</p>
+            <p>Source: Ethiopian National Examinations Agency (NEAEA)</p>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
